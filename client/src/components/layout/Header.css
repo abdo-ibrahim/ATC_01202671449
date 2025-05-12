@@ -1,0 +1,19 @@
+.fill {
+  padding: 8px 0px;
+  position: relative;
+  z-index: 1;
+}
+.fill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-bottom: 2px solid var(--color-primary);
+  transition: width 0.2s linear;
+  z-index: -1;
+}
+.fill:hover::before {
+  width: 100%;
+}
