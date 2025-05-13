@@ -38,7 +38,7 @@ const Header = () => {
   console.log("token2", token2);
   console.log("user", user);
   console.log("isAuthenticated", isAuthenticated);
-
+  console.log(document.cookie);
   const toggleMenu = () => {
     setOpen(!open);
   };

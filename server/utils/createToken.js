@@ -13,7 +13,7 @@ const createToken = (res, user) => {
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     maxAge: 1000 * 60 * 60 * 24 * 1, // 1 day
   };
-
+  console.log(document.cookie);
   // Save the token in a cookie
   res.cookie("token", token, cookieOptions);
 
