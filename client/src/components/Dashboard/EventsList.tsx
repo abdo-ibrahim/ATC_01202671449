@@ -4,27 +4,31 @@ import DeleteEvent from "./DeleteEvent";
 import { FaPoundSign } from "react-icons/fa";
 import { useEvents } from "@/hooks/useEvents";
 import { EventProps } from "@/Types/Booking";
+import i18n from "@/i18n";
+import { useTranslation } from "react-i18next";
 
 const EventsList = () => {
+  const { t } = useTranslation();
   const { events } = useEvents();
   return (
     <div className="container rounded-md border">
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Event Name</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Venue</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead className="text-right">Price</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t("dashboard.table.eventName")}</TableHead>
+            <TableHead>{t("dashboard.table.date")}</TableHead>
+            <TableHead>{t("dashboard.table.venue")}</TableHead>
+            <TableHead>{t("dashboard.table.category")}</TableHead>
+            <TableHead className="text-right">{t("dashboard.table.price")}</TableHead>
+            <TableHead className="text-right">{t("dashboard.table.actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {events.length === 0 ? (
             <TableRow>
               <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
-                No Events found
+                {
+              t("dashboard.noEvents")}
               </TableCell>
             </TableRow>
           ) : (
@@ -39,10 +43,10 @@ const EventsList = () => {
                     {event.price > 0 ? (
                       <>
                         {event.price.toFixed(2)}
-                        <FaPoundSign size={14} />
+                        {i18n.language === "en" ? <FaPoundSign size={14} /> : "جنيه "}
                       </>
                     ) : (
-                      <span className="text-green-700 text-semibold">Free</span>
+                      <span className="text-green-700 text-semibold">{i18n.language === "en" ? "Free" : "مجاني"}</span>
                     )}
                   </div>
                 </TableCell>

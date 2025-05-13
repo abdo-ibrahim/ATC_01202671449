@@ -6,6 +6,8 @@ import { useAppDispatch } from "@/hooks/useReduxHooks";
 import { deleteBooking } from "@/redux/slices/BookingSlice";
 import { useState } from "react";
 import { FaPoundSign } from "react-icons/fa";
+import i18n from "@/i18n";
+import { t } from "i18next";
 
 const BookingsList = ({ bookings }: { bookings: MyBookingProps[] }) => {
   const dispatch = useAppDispatch();
@@ -21,19 +23,19 @@ const BookingsList = ({ bookings }: { bookings: MyBookingProps[] }) => {
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Event Name</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Venue</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead className="text-right">Price</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t("myBookings.eventName")}</TableHead>
+            <TableHead>{t("myBookings.date")}</TableHead>
+            <TableHead>{t("myBookings.venue")}</TableHead>
+            <TableHead>{t("myBookings.category")}</TableHead>
+            <TableHead className="text-right">{t("myBookings.price")}</TableHead>
+            <TableHead className="text-right">{t("myBookings.actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {bookings.length === 0 ? (
             <TableRow>
               <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
-                No bookings found
+                {t("myBookings.noBookings")}
               </TableCell>
             </TableRow>
           ) : (
@@ -45,20 +47,20 @@ const BookingsList = ({ bookings }: { bookings: MyBookingProps[] }) => {
                 <TableCell>{booking.event.category}</TableCell>
                 <TableCell className="text-right">
                   {booking.event?.price && booking.event.price > 0 ? (
-                    <div className="flex items-center gap-[2px]">
-                      <span>{booking.event.price}</span> <FaPoundSign />
+                    <div className="flex items-center gap-[4px]">
+                      <span>{booking.event.price}</span> {i18n.language === "en" ? <FaPoundSign /> : "جنيه "}
                     </div>
                   ) : (
-                    <span className="text-green-700 text-semibold">Free</span>
+                    <span className="text-green-700 text-semibold">{i18n.language === "en" ? "Free" : "مجاني"}</span>
                   )}
                 </TableCell>
                 <TableCell className="text-right">
                   <Button variant="destructive" size="sm" className="cursor-pointer" onClick={() => handleCancelBooking(booking._id)} disabled={cancellingIds.includes(booking._id)}>
                     {cancellingIds.includes(booking._id) ? (
-                      "Cancelling..."
+                      t("myBookings.cancelling") + "..."
                     ) : (
                       <>
-                        <X className="h-4 w-4 mr-1" /> Cancel
+                        <X className="h-4 w-4 mr-1" /> {t("myBookings.cancel")}
                       </>
                     )}
                   </Button>

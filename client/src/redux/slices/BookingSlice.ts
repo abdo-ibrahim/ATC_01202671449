@@ -4,6 +4,7 @@ import axios from "axios";
 import { bookingURL } from "@/api/api";
 import Cookie from "js-cookie";
 import toast from "react-hot-toast";
+import i18n from "@/i18n";
 
 interface BookingState {
   bookings: MyBookingProps[];
@@ -23,6 +24,7 @@ export const fetchUserBookings = createAsyncThunk("bookings/fetchUserBookings", 
     const response = await axios.get(`${bookingURL}/getAllBookings`, {
       headers: {
         Authorization: `Bearer ${token}`,
+        "accept-language": i18n.language,
       },
     });
     return response.data.data.bookings;
@@ -43,7 +45,7 @@ export const deleteBooking = createAsyncThunk("bookings/deleteBooking", async (b
         Authorization: `Bearer ${token}`,
       },
     });
-    toast.success("Booking canceled successfully");
+    toast.success(i18n.language === "en" ? "Booking cancelled successfully!" : "تم إلغاء الحجز بنجاح!");
     return bookingId;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -62,12 +64,15 @@ export const createBooking = createAsyncThunk("bookings/createBooking", async (e
       `${bookingURL}/createBooking`,
       { eventId },
       {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "accept-language": i18n.language,
+        },
       }
     );
-    toast.success("Event booked successfully!");
+    toast.success(i18n.language === "en" ? "Event booked successfully!" : "تم حجز الحدث بنجاح!");
     dispatch(fetchUserBookings());
-    return response.data.data;
+    return response.data.data.booking;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       toast.error(error.response?.data.message || "Failed to book event");

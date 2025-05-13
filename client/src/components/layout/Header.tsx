@@ -7,8 +7,27 @@ import { CgMenuRightAlt, CgClose } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import { useAuth } from "@/hooks/useAuth";
+import i18n from "@/i18n";
+import { useTranslation } from "react-i18next";
+
+const LanguageSwitcher = () => {
+  return (
+    <Button
+      variant="outline"
+      size="sm"
+      className="flex items-center justify-center min-w-[40px] font-medium"
+      onClick={() => {
+        i18n.changeLanguage(i18n.language === "ar" ? "en" : "ar");
+        window.location.reload();
+      }}>
+      {i18n.language === "ar" ? "EN" : "عربي"}
+    </Button>
+  );
+};
 
 const Header = () => {
+  const { t } = useTranslation();
+
   const [open, setOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
 
@@ -31,7 +50,7 @@ const Header = () => {
     <header className="relative z-50">
       <div className="container flex items-center justify-between min-h-[70px]">
         <Link to="/">
-          <h1 className="text-primary font-['Playfair Display'] text-2xl sm:text-3xl">AreebEvent</h1>
+          <h1 className="logo text-primary !font-['Playfair Display'] text-2xl sm:text-3xl">AreebEvent</h1>
         </Link>
 
         <button className="text-3xl cursor-pointer md:hidden z-50" onClick={toggleMenu}>
@@ -40,18 +59,18 @@ const Header = () => {
 
         <div className="hidden md:flex items-center justify-between flex-1 ml-8">
           <nav className="flex items-center justify-center flex-1">
-            <ul className="flex items-center gap-4 text-md">
+            <ul className="flex items-center gap-6 text-md font-medium">
               <li className="fill">
-                <Link to="/">Events</Link>
+                <Link to="/">{t("header.events")}</Link>
               </li>
               {isAuthenticated && (
                 <li className="fill">
-                  <Link to="/my-bookings">My Bookings</Link>
+                  <Link to="/my-bookings">{t("header.myBookings")}</Link>
                 </li>
               )}
               {isAuthenticated && user?.role === "admin" && (
                 <li className="fill">
-                  <Link to="/dashboard">Dashboard</Link>
+                  <Link to="/dashboard">{t("header.dashboard")}</Link>
                 </li>
               )}
             </ul>
@@ -63,19 +82,23 @@ const Header = () => {
               </p>
             )}
             {isAuthenticated ? (
-              <Button variant="outline" size="sm" className="flex items-center gap-2" onClick={logout}>
-                <FiLogIn />
-                Logout
-              </Button>
+              <div className="flex items-center gap-2">
+                <LanguageSwitcher />
+                <Button variant="outline" size="sm" className="flex items-center gap-2" onClick={logout}>
+                  <FiLogIn />
+                  {t("header.logout")}
+                </Button>
+              </div>
             ) : (
               <>
+                <LanguageSwitcher />
                 <Button variant="outline" size="sm" className="flex items-center gap-2">
                   <FiLogIn />
-                  <Link to="/login">Login</Link>
+                  <Link to="/login">{t("header.login")}</Link>
                 </Button>
                 <Button size="sm" className="flex items-center gap-2">
                   <FaRegUserCircle />
-                  <Link to="/register">Register</Link>
+                  <Link to="/register">{t("header.register")}</Link>
                 </Button>
               </>
             )}

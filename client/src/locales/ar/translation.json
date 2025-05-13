@@ -1,0 +1,119 @@
+{
+  "header": {
+    "events": "الأحداث",
+    "myBookings": "حجوزاتي",
+    "dashboard": "لوحة التحكم",
+    "logout": "تسجيل الخروج",
+    "login": "تسجيل الدخول",
+    "register": "إنشاء حساب",
+    "welcome": "مرحباً",
+    "switchLanguage": "EN"
+  },
+  "mobileMenu": {
+    "switchLanguage": "Switch to English"
+  },
+  "login": {
+    "welcomeBack": "مرحبًا بعودتك!",
+    "signInPrompt": "تسجيل الدخول إلى حسابك",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "loginButton": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "signUp": "إنشاء حساب جديد",
+    "fillAllFields": "يرجى ملء جميع الحقول"
+  },
+  "register": {
+    "createAccount": "إنشاء حساب جديد",
+    "signUpPrompt": "سجل للحجز في الفعاليات الرائعة",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "registerButton": "تسجيل",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "signIn": "تسجيل الدخول",
+    "fillAllFields": "يرجى ملء جميع الحقول",
+    "successMessage": "تم إنشاء الحساب بنجاح"
+  },
+  "hero": {
+    "title": "اكتشف واحجز فعاليات مذهلة",
+    "subtitle": "ابحث عن الفعاليات المناسبة لك، من الحفلات الموسيقية والمؤتمرات إلى ورش العمل والمزيد.",
+    "searchPlaceholder": "ابحث عن فعاليات...",
+    "searchButton": "بحث"
+  },
+  "eventDetails": {
+    "backToEvents": "العودة إلى الأحداث",
+    "aboutEvent": "وصف الحدث",
+    "bookNow": "احجز الآن",
+    "booked": "تم الحجز",
+    "free": "مجاني",
+    "loginPrompt": "يرجى تسجيل الدخول لحجز حدث",
+    "alreadyBooked": "لقد حجزت هذا الحدث بالفعل",
+    "date": "التاريخ",
+    "venue": "المكان",
+    "category": "الفئة",
+    "price": "السعر"
+  },
+  "bookingSuccess": {
+    "title": "تم الحجز بنجاح!",
+    "message": "شكراً لحجزك. نتطلع لرؤيتك قريباً!",
+    "browseMore": "تصفح المزيد من الأحداث",
+    "viewBookings": "عرض حجوزاتي"
+  },
+  "myBookings": {
+    "title": "حجوزاتي",
+    "noBookings": "لا توجد حجوزات",
+    "noBookingsMessage": "لم تقم بحجز أي أحداث بعد. تصفح مجموعتنا واحجز حدثًا اليوم!",
+    "browseEvents": "اكتشف الأحداث",
+    "eventName": "اسم الحدث",
+    "date": "التاريخ",
+    "venue": "المكان",
+    "category": "الفئة",
+    "price": "السعر",
+    "actions": "الإجراءات",
+    "cancel": "إلغاء",
+    "cancelling": "جاري الإلغاء..."
+  },
+  "dashboard": {
+    "title": "لوحة التحكم",
+    "description": "إدارة جميع الفعاليات من لوحة التحكم",
+    "addNewButton": "إضافة فعالية جديدة",
+    "noEvents": "لا توجد فعاليات",
+    "noEventsMessage": "ليس لديك أي فعاليات بعد. أضف فعالية الآن!",
+    "table": {
+      "eventName": "اسم الفعالية",
+      "date": "التاريخ",
+      "venue": "المكان",
+      "category": "الفئة",
+      "price": "السعر",
+      "actions": "الإجراءات"
+    },
+    "addEventModal": {
+      "title": "إضافة فعالية جديدة",
+      "description": "املأ التفاصيل لإنشاء فعالية جديدة",
+      "eventName": "اسم الفعالية",
+      "descriptionLabel": "الوصف بالإنجليزية",
+      "date": "التاريخ",
+      "price": "السعر (جنيه)",
+      "venue": "المكان بالإنجليزية",
+      "category": "الفئة بالإنجليزية",
+      "imageUrl": "رابط الصورة",
+      "addButton": "إضافة فعالية",
+      "adding": "جاري الإضافة...",
+      "requiredFields": "يرجى ملء جميع الحقول المطلوبة",
+      "success": "تم إنشاء الفعالية بنجاح!",
+      "error": "فشل في إنشاء الفعالية. يرجى المحاولة مرة أخرى."
+    },
+    "editEventModal": {
+      "title": "تعديل الفعالية",
+      "description": "تحديث تفاصيل الفعالية",
+      "updateButton": "تحديث الفعالية",
+      "updating": "جاري التحديث...",
+      "success": "تم تحديث الفعالية بنجاح!",
+      "error": "فشل في تحديث الفعالية. يرجى المحاولة مرة أخرى.",
+      "requiredFields": "يرجى ملء جميع الحقول المطلوبة"
+    }
+  },
+  "footer": {
+    "copyright": "جميع الحقوق محفوظة"
+  }
+}

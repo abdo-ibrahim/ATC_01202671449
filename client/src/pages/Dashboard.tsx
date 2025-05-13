@@ -6,8 +6,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useEvents } from "@/hooks/useEvents";
 import { useAuth } from "@/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 
 const Dashboard = () => {
+  const { t } = useTranslation();
   const { loading: eventsLoading, events, getAllEvents } = useEvents();
   const { isAuthenticated, user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
@@ -42,8 +44,8 @@ const Dashboard = () => {
       ) : (
         <div className="container text-center mt-20 rounded-lg p-8 bg-gray-50">
           <MdOutlineDateRange size={56} className="text-primary text-center mx-auto mb-4" />
-          <h2 className="text-3xl font-bold text-center mb-4">No Events Found</h2>
-          <p className="mb-4">You haven't any events yet. Add Event Now!</p>
+          <h2 className="text-3xl font-bold text-center mb-4">{t("dashboard.noEvents")}</h2>
+          <p className="mb-4">{t("dashboard.noEventsMessage")}</p>
         </div>
       )}
     </div>

@@ -9,11 +9,14 @@ import { fetchUserBookings } from "@/redux/slices/BookingSlice";
 import LoadingSkeleton from "@/components/utils/LoadingSkeleton";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/hooks/useAuth";
+import { useTranslation } from "react-i18next";
 const MyBookings = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { isAuthenticated, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const { bookings, loading: bookingLoading } = useAppSelector((state) => state.booking);
+
   useEffect(() => {
     if (!authLoading) {
       if (!isAuthenticated) {
@@ -42,10 +45,10 @@ const MyBookings = () => {
       ) : (
         <div className="container text-center mt-20 rounded-lg p-8 bg-gray-50">
           <MdOutlineDateRange size={56} className="text-primary text-center mx-auto mb-4" />
-          <h2 className="text-3xl font-bold text-center mb-4">No Bookings Found</h2>
-          <p className="mb-4">You haven't booked any events yet. Browse our selection and book an event today!</p>
+          <h2 className="text-3xl font-bold text-center mb-4">{t("myBookings.noBookings")}</h2>
+          <p className="mb-4">{t("myBookings.noBookingsMessage")}</p>
           <Button>
-            <Link to={"/"}> Discover Events</Link>
+            <Link to={"/"}> {t("myBookings.browseEvents")}</Link>
           </Button>
         </div>
       )}

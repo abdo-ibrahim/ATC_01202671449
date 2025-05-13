@@ -1,0 +1,119 @@
+{
+  "header": {
+    "events": "Events",
+    "myBookings": "My Bookings",
+    "dashboard": "Dashboard",
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "welcome": "Welcome",
+    "switchLanguage": "عربي"
+  },
+  "mobileMenu": {
+    "switchLanguage": "التغيير للعربية"
+  },
+  "login": {
+    "welcomeBack": "Welcome back!",
+    "signInPrompt": "Sign in to your account",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Login",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign up",
+    "fillAllFields": "Please fill in all fields"
+  },
+  "register": {
+    "createAccount": "Create an account",
+    "signUpPrompt": "Sign up to book amazing events",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "registerButton": "Register",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "fillAllFields": "Please fill in all fields",
+    "successMessage": "Account created successfully"
+  },
+  "hero": {
+    "title": "Discover and Book Amazing Events",
+    "subtitle": "Find the perfect events for you, from concerts and conferences to workshops and more.",
+    "searchPlaceholder": "Search for events...",
+    "searchButton": "Search"
+  },
+  "eventDetails": {
+    "backToEvents": "Back to Events",
+    "aboutEvent": "About This Event",
+    "bookNow": "Book Now",
+    "booked": "Booked",
+    "free": "Free",
+    "loginPrompt": "Please login to book an event",
+    "alreadyBooked": "You have already booked this event",
+    "date": "Date",
+    "venue": "Venue",
+    "category": "Category",
+    "price": "Price"
+  },
+  "bookingSuccess": {
+    "title": "Booking Successful!",
+    "message": "Thank you for your booking. We look forward to seeing you soon!",
+    "browseMore": "Browse More Events",
+    "viewBookings": "View My Bookings"
+  },
+  "myBookings": {
+    "title": "My Bookings",
+    "noBookings": "No Bookings Found",
+    "noBookingsMessage": "You haven't booked any events yet. Browse our selection and book an event today!",
+    "browseEvents": "Discover Events",
+    "eventName": "Event Name",
+    "date": "Date",
+    "venue": "Venue",
+    "category": "Category",
+    "price": "Price",
+    "actions": "Actions",
+    "cancel": "Cancel",
+    "cancelling": "Cancelling..."
+  },
+  "dashboard": {
+    "title": "Admin Dashboard",
+    "description": "Manage all events from this dashboard",
+    "addNewButton": "Add New Event",
+    "noEvents": "No Events Found",
+    "noEventsMessage": "You haven't any events yet. Add Event Now!",
+    "table": {
+      "eventName": "Event Name",
+      "date": "Date",
+      "venue": "Venue",
+      "category": "Category",
+      "price": "Price",
+      "actions": "Actions"
+    },
+    "addEventModal": {
+      "title": "Add New Event",
+      "description": "Fill in the details to create a new event",
+      "eventName": "Event Name",
+      "descriptionLabel": "Description English",
+      "date": "Date",
+      "price": "Price (EG)",
+      "venue": "Venue English",
+      "category": "Category English",
+      "imageUrl": "Image URL",
+      "addButton": "Add Event",
+      "adding": "Adding...",
+      "requiredFields": "Please fill all required fields",
+      "success": "Event created successfully!",
+      "error": "Failed to create event. Please try again."
+    },
+    "editEventModal": {
+      "title": "Edit Event",
+      "description": "Update the event details",
+      "updateButton": "Update Event",
+      "updating": "Updating...",
+      "success": "Event updated successfully!",
+      "error": "Failed to update event. Please try again.",
+      "requiredFields": "Please fill all required fields"
+    }
+  },
+  "footer": {
+    "copyright": "All rights reserved."
+  }
+}

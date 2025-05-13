@@ -1,3 +1,4 @@
+import i18n from "@/i18n";
 import { useEffect } from "react";
 
 interface LoadingScreenProps {
@@ -22,8 +23,8 @@ const LoadingScreen = ({ isLoading }: LoadingScreenProps) => {
     <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
       <div className="text-center">
         <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <h1 className="text-2xl font-['Playfair Display'] text-primary mb-2">AreebEvent</h1>
-        <p className="text-lg text-gray-700">Loading...</p>
+        <h1 className="text-2xl !font-['Playfair Display'] text-primary mb-2">AreebEvent</h1>
+        <p className="text-lg text-gray-700">{i18n.language === "ar" ? "جارٍ التحميل..." : "Loading..."}</p>
       </div>
     </div>
   );

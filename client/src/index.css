@@ -15,6 +15,22 @@ html {
 body {
   font-family: "Inter", sans-serif;
 }
+[dir="rtl"] body {
+  font-family: "IBM Plex Sans Arabic", sans-serif;
+}
+[dir="rtl"] body {
+  text-align: right;
+}
+[dir="ltr"] body {
+  text-align: left;
+}
+[dir="rtl"] .flex-row {
+  flex-direction: row-reverse;
+}
+[dir="ltr"] .flex-row {
+  flex-direction: row;
+}
+
 ul {
   list-style: none;
 }
@@ -176,13 +192,26 @@ p {
   body {
     @apply bg-background text-foreground;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  [dir="rtl"] body h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-family: "Cairo", sans-serif;
+    text-align: right;
+  }
+  [dir="ltr"] body h1,
+  [dir="ltr"] h2,
+  [dir="ltr"] h3,
+  [dir="ltr"] h4,
+  [dir="ltr"] h5,
+  [dir="ltr"] h6 {
     font-family: "Playfair Display", serif;
+    text-align: left;
+  }
+  .logo {
+    font-family: "Playfair Display", serif !important;
   }
 }
 @layer components {

@@ -16,8 +16,11 @@ import { useBookingStatus } from "@/hooks/useBookingStatus";
 import { useAppDispatch } from "@/hooks/useReduxHooks";
 import { createBooking } from "@/redux/slices/BookingSlice";
 import { useAuth } from "@/hooks/useAuth";
+import i18n from "@/i18n";
+import { useTranslation } from "react-i18next";
 
 const EventDetails = () => {
+  const { t } = useTranslation();
   const { id } = useParams<{ id: string }>();
   const [isLoadingButton, setIsLoadingButton] = useState(false);
   const navigate = useNavigate();
@@ -32,7 +35,11 @@ const EventDetails = () => {
     const fetchEventDetails = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`${eventURL}/getEventById/${id}`);
+        const response = await axios.get(`${eventURL}/getEventById/${id}`, {
+          headers: {
+            "accept-language": i18n.language,
+          },
+        });
         if (response.status === 200) {
           setEvent(response.data.data.event);
         }
@@ -52,7 +59,7 @@ const EventDetails = () => {
 
   const handleBooking = async () => {
     if (!isAuthenticated) {
-      toast.error("Please login to book an event");
+      toast.error(t("eventDetails.loginPrompt"));
       setTimeout(() => {
         navigate("/login");
       }, 1000);
@@ -60,7 +67,7 @@ const EventDetails = () => {
     }
 
     if (isEventBooked) {
-      toast.error("You have already booked this event");
+      toast.error(t("eventDetails.alreadyBooked"));
       return;
     }
 
@@ -82,7 +89,7 @@ const EventDetails = () => {
       <div className="container">
         <Link to={"/"} className="flex items-center gap-2 text-gray-600 hover:text-gray-700">
           <IoArrowBack />
-          Back to Events
+          {t("eventDetails.backToEvents")}
         </Link>
         <div className="event-details mt-4">
           <div className="event-image h-[500px] max-w-[600px] rounded-lg ">
@@ -107,20 +114,20 @@ const EventDetails = () => {
                 <MdPriceChange className="text-primary" />
                 {event?.price && event.price > 0 ? (
                   <div className="flex items-center text-lg gap-[2px]">
-                    <span>{event?.price}</span> <FaPoundSign />
+                    <span>{event?.price}</span> {i18n.language === "en" ? <FaPoundSign /> : "جنيه "}
                   </div>
                 ) : (
-                  <span className="text-green-700 text-semibold">Free</span>
+                  <span className="text-green-700 text-semibold">{i18n.language === "en" ? "Free" : "مجاني"}</span>
                 )}
               </div>
             </div>
             <div className="mb-3 text-lg">
-              <h3 className="text-2xl mb-3">About This Event</h3>
+              <h3 className="text-2xl mb-3">{t("eventDetails.aboutEvent")}</h3>
               <p className="max-w-[600px] text-secondary">{event?.description}</p>
             </div>
             <div className="max-w-[600px]">
               <Button size="sm" className="w-full" onClick={handleBooking} disabled={isLoadingButton || isEventBooked}>
-                {isLoadingButton ? <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div> : isEventBooked ? "Booked" : "Book Now"}
+                {isLoadingButton ? <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div> : isEventBooked ? t("eventDetails.booked") : t("eventDetails.bookNow")}
               </Button>
             </div>
           </div>

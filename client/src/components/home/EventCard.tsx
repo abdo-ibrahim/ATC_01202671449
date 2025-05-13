@@ -6,6 +6,7 @@ import { EventProps } from "../../Types/Booking";
 import { FaPoundSign } from "react-icons/fa";
 import { useBookingStatus } from "@/hooks/useBookingStatus";
 import { useAuth } from "@/hooks/useAuth";
+import i18n from "@/i18n";
 
 const EventCard = ({ event }: { event: EventProps }) => {
   const { isEventBooked } = useBookingStatus(event._id);
@@ -30,11 +31,12 @@ const EventCard = ({ event }: { event: EventProps }) => {
           <div className="flex justify-between items-center">
             <div className="flex items-center font-bold text-lg gap-[2px]">
               {event?.price && event.price > 0 ? (
-                <div className="flex items-center text-lg gap-[2px]">
-                  <span>{event?.price}</span> <FaPoundSign />
+                <div className="flex items-center text-lg gap-[4px]">
+                  <span>{event?.price}</span>
+                  {i18n.language === "en" ? <FaPoundSign /> : "جنيه "}
                 </div>
               ) : (
-                <span className="text-green-700 text-semibold">Free</span>
+                <span className="text-green-700 text-semibold">{i18n.language === "en" ? "Free" : "مجاني"}</span>
               )}
             </div>
           </div>
@@ -43,12 +45,12 @@ const EventCard = ({ event }: { event: EventProps }) => {
       <div className="px-4 pb-4">
         {isAuthenticated && isEventBooked ? (
           <Button size="sm" variant="outline" disabled className="w-full">
-            Booked
+            {i18n.language === "en" ? "Booked" : "تم الحجز"}
           </Button>
         ) : (
           <Link to={`/events/${event._id}`} className="w-full block">
             <Button size="sm" className="w-full">
-              Book Now
+              {i18n.language === "en" ? "Book Now" : "احجز الآن"}
             </Button>
           </Link>
         )}

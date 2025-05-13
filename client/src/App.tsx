@@ -19,6 +19,7 @@ import { useAppDispatch } from "./hooks/useReduxHooks";
 import { useAuth } from "./hooks/useAuth";
 import { fetchUserBookings } from "./redux/slices/BookingSlice";
 import LoadingScreen from "./components/utils/LoadingScreen";
+import { useTranslation } from "react-i18next";
 
 const BookingsLoader = () => {
   const dispatch = useAppDispatch();
@@ -53,6 +54,8 @@ const AppContent = () => {
 };
 
 function App() {
+  const { i18n } = useTranslation();
+
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -60,6 +63,11 @@ function App() {
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    const dir = i18n.language === "ar" ? "rtl" : "ltr";
+    document.documentElement.dir = dir;
+    document.documentElement.lang = i18n.language;
+  }, [i18n.language]);
 
   return (
     <Provider store={store}>
