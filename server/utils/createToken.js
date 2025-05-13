@@ -7,12 +7,12 @@ const createToken = (res, user) => {
   });
 
   // Configure the options for the cookie
-  const cookieOptions = {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-    maxAge: 1000 * 60 * 60 * 24 * 1, // 1 day
-  };
+const cookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  maxAge: 1000 * 60 * 60 * 24 * 1, // 1 day
+};
 
   // Save the token in a cookie
   res.cookie("token", token, cookieOptions);

@@ -65,7 +65,13 @@ exports.login = asyncHandler(async (req, res, next) => {
 });
 // Logout
 exports.logout = (req, res) => {
-  res.clearCookie("token");
+  res.cookie("token", "", {
+    httpOnly: true,
+    expires: new Date(0),
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+  });
+
   res.status(200).json({ success: true, message: "Logged out successfully" });
 };
 // Protect route : verify token
