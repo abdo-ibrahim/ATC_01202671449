@@ -9,8 +9,6 @@ import MobileMenu from "./MobileMenu";
 import { useAuth } from "@/hooks/useAuth";
 import i18n from "@/i18n";
 import { useTranslation } from "react-i18next";
-import Cookies from "js-cookie";
-import Cookie from "js-cookie";
 
 const LanguageSwitcher = () => {
   return (
@@ -32,13 +30,10 @@ const Header = () => {
 
   const [open, setOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
-  const token = Cookies.get("token");
-  const token2 = Cookie.get("token");
-  console.log("token", token);
-  console.log("token2", token2);
+
   console.log("user", user);
   console.log("isAuthenticated", isAuthenticated);
-  console.log(document.cookie);
+
   const toggleMenu = () => {
     setOpen(!open);
   };

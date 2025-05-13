@@ -3,7 +3,6 @@ import { FaPlus } from "react-icons/fa";
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Cookie from "js-cookie";
 import { eventURL } from "@/api/api";
 import axios from "axios";
 import { useState } from "react";
@@ -27,7 +26,6 @@ const AddEvent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const token = Cookie.get("token");
   const handleAddEvent = async () => {
     if (!name.en || !description.en || !eventDate || !venue.en || !price || !category.en) {
       toast.error(t("dashboard.addEventModal.requiredFields"));
@@ -46,8 +44,8 @@ const AddEvent = () => {
           imageUrl: image,
         },
         {
+          withCredentials: true,
           headers: {
-            Authorization: `Bearer ${token}`,
             "accept-language": i18n.language,
           },
         }
@@ -93,7 +91,7 @@ const AddEvent = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild >
+      <DialogTrigger asChild>
         <Button className="flex items-center gap-2 text-white">
           <FaPlus size={20} />
           {t("dashboard.addEventModal.title")}

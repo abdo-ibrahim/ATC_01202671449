@@ -8,12 +8,12 @@ const createToken = (res, user) => {
 
   // Configure the options for the cookie
   const cookieOptions = {
-    httpOnly: false,
+    httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
     maxAge: 1000 * 60 * 60 * 24 * 1, // 1 day
   };
-  console.log(document.cookie);
+
   // Save the token in a cookie
   res.cookie("token", token, cookieOptions);
 

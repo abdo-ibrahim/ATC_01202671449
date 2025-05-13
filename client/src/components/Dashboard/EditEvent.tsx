@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { MdOutlineModeEditOutline } from "react-icons/md";
 import { EventProps } from "@/Types/Booking";
 import { useEffect, useState } from "react";
-import Cookie from "js-cookie";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { eventURL } from "@/api/api";
@@ -22,7 +21,6 @@ const EditEvent = ({ eventId }: { eventId: string }) => {
   const [price, setPrice] = useState<number | string>(0);
   const [category, setCategory] = useState<{ en: string; ar: string }>({ en: "", ar: "" });
   const [image, setImage] = useState("");
-  const token = Cookie.get("token");
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const { getAllEvents } = useEvents();
@@ -31,8 +29,8 @@ const EditEvent = ({ eventId }: { eventId: string }) => {
     const fetchEvent = async () => {
       try {
         const response = await axios.get(`${eventURL}/getEventById/${eventId}`, {
+          withCredentials: true,
           headers: {
-            Authorization: `Bearer ${token}`,
             getAllEvent: "true",
           },
         });
@@ -43,7 +41,7 @@ const EditEvent = ({ eventId }: { eventId: string }) => {
       }
     };
     fetchEvent();
-  }, [eventId, token]);
+  }, [eventId]);
   useEffect(() => {
     setName(typeof event.name === "object" ? event.name : { en: String(event.name), ar: "" });
     setDescription(typeof event.description === "object" ? event.description : { en: String(event.description), ar: "" });
@@ -92,9 +90,7 @@ const EditEvent = ({ eventId }: { eventId: string }) => {
           imageUrl: image,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          withCredentials: true,
         }
       );
       if (response.data.status === "success") {

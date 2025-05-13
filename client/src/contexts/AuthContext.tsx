@@ -1,7 +1,6 @@
 import { authURL } from "@/api/api";
 import axios from "axios";
 import { useState, ReactNode, useEffect } from "react";
-import Cookie from "js-cookie";
 import { AuthContext, UserData } from "./AuthContextTypes";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
@@ -10,14 +9,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    const token = Cookie.get("token");
     const userData = localStorage.getItem("userData");
-    if (userData && token) {
+    if (userData) {
       setUser(JSON.parse(userData));
       setIsAuthenticated(true);
     } else {
       localStorage.removeItem("userData");
-      Cookie.remove("token");
       setUser(null);
       setIsAuthenticated(false);
     }
@@ -35,14 +32,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         withCredentials: true,
       });
       localStorage.removeItem("userData");
-      Cookie.remove("token");
       setUser(null);
       setIsAuthenticated(false);
     } catch (error) {
       console.error("Logout error:", error);
 
       localStorage.removeItem("userData");
-      Cookie.remove("token");
       setUser(null);
       setIsAuthenticated(false);
     }

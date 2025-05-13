@@ -2,7 +2,6 @@ import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { MyBookingProps } from "../../Types/Booking";
 import axios from "axios";
 import { bookingURL } from "@/api/api";
-import Cookie from "js-cookie";
 import toast from "react-hot-toast";
 import i18n from "@/i18n";
 
@@ -20,10 +19,9 @@ const initialState: BookingState = {
 
 export const fetchUserBookings = createAsyncThunk("bookings/fetchUserBookings", async (_, { rejectWithValue }) => {
   try {
-    const token = Cookie.get("token");
     const response = await axios.get(`${bookingURL}/getAllBookings`, {
+      withCredentials: true,
       headers: {
-        Authorization: `Bearer ${token}`,
         "accept-language": i18n.language,
       },
     });
@@ -39,11 +37,8 @@ export const fetchUserBookings = createAsyncThunk("bookings/fetchUserBookings", 
 // Delete a booking
 export const deleteBooking = createAsyncThunk("bookings/deleteBooking", async (bookingId: string, { rejectWithValue }) => {
   try {
-    const token = Cookie.get("token");
     await axios.delete(`${bookingURL}/deleteBooking/${bookingId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      withCredentials: true,
     });
     toast.success(i18n.language === "en" ? "Booking cancelled successfully!" : "تم إلغاء الحجز بنجاح!");
     return bookingId;
@@ -59,13 +54,12 @@ export const deleteBooking = createAsyncThunk("bookings/deleteBooking", async (b
 
 export const createBooking = createAsyncThunk("bookings/createBooking", async (eventId: string, { rejectWithValue, dispatch }) => {
   try {
-    const token = Cookie.get("token");
     const response = await axios.post(
       `${bookingURL}/createBooking`,
       { eventId },
       {
+        withCredentials: true,
         headers: {
-          Authorization: `Bearer ${token}`,
           "accept-language": i18n.language,
         },
       }

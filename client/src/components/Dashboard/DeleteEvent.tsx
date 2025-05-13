@@ -5,7 +5,6 @@ import { MdDeleteOutline } from "react-icons/md";
 import { EventProps } from "@/Types/Booking";
 import { eventURL } from "@/api/api";
 import toast from "react-hot-toast";
-import Cookie from "js-cookie";
 import axios from "axios";
 import { useState } from "react";
 import { useEvents } from "@/hooks/useEvents";
@@ -20,14 +19,11 @@ const DeleteEvent = ({ event }: DeleteEventProps) => {
   const { getAllEvents } = useEvents();
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
-  const token = Cookie.get("token");
   const handleDeleteEvent = async () => {
     setIsLoading(true);
     try {
       const response = await axios.delete(`${eventURL}/deleteEvent/${event._id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        withCredentials: true,
       });
       if (response.data.status === "success") {
         toast.success(t("dashboard.deleteEventModal.success"));
