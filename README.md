@@ -4,7 +4,12 @@
 
 AreebEvent is a fullstack event booking platform built with the **MERN** stack and **TypeScript**. It enables users to discover and book events with ease, while providing administrators with tools to manage events effectively.
 
+## Live Demo
+
+[Live_demo](https://areebevent-client.vercel.app/)
+
 ## Video Demo
+
 [video_demo](https://drive.google.com/file/d/1Xbu-suwBAN4B81J0TmJGbBwBwgzc0m_6/view)
 
 ## Features
@@ -172,12 +177,14 @@ npm start
 ## Usage
 
 ### As a User
+
 1. Visit the homepage to browse events
 2. Use search bar to find events
 3. Click "Book Now" to reserve a spot (login required)
 4. View or cancel your bookings in "My Bookings"
 
 ### As an Admin
+
 1. Login with admin credentials
 2. Go to `/dashboard`
 3. Create, edit, or delete events
