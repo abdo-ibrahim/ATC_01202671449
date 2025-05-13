@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 const EventsList = () => {
   const { t } = useTranslation();
   const { events } = useEvents();
+  console.log("events", events);
   return (
     <div className="container rounded-md border">
       <Table>
@@ -27,8 +28,7 @@ const EventsList = () => {
           {events.length === 0 ? (
             <TableRow>
               <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
-                {
-              t("dashboard.noEvents")}
+                {t("dashboard.noEvents")}
               </TableCell>
             </TableRow>
           ) : (
@@ -51,7 +51,7 @@ const EventsList = () => {
                   </div>
                 </TableCell>
                 <TableCell className="text-right flex items-center justify-end gap-2">
-                  <EditEvent event={event} />
+                  <EditEvent eventId={event._id} />
                   <DeleteEvent event={event} />
                 </TableCell>
               </TableRow>

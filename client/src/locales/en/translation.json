@@ -111,6 +111,15 @@
       "success": "Event updated successfully!",
       "error": "Failed to update event. Please try again.",
       "requiredFields": "Please fill all required fields"
+    },
+    "deleteEventModal": {
+      "title": "Are You Sure?",
+      "description": "This action cannot be undone. This will permanently delete the event and remove it from our servers.",
+      "cancelButton": "Cancel",
+      "deleteButton": "Delete",
+      "deleting": "Deleting...",
+      "success": "Event deleted successfully!",
+      "error": "Failed to delete event. Please try again."
     }
   },
   "footer": {

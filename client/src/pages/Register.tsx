@@ -71,7 +71,7 @@ const Register = () => {
         </div>
         <div className="grid w-full max-w-lg items-center gap-1.5 mb-5">
           <label htmlFor="password">{t("register.password")}</label>
-          <Input type="email" id="password" placeholder="*********" className="py-[20px]" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <Input type="password" id="password" placeholder="*********" className="py-[20px]" value={password} onChange={(e) => setPassword(e.target.value)} required />
         </div>
         <Button type="submit" className="w-full mb-5" onClick={handleSubmit}>
           {isLoadingButton ? <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div> : t("register.registerButton")}

@@ -9,16 +9,12 @@ import Cookie from "js-cookie";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { eventURL } from "@/api/api";
-import { useEvents } from "@/hooks/useEvents";
 import { useTranslation } from "react-i18next";
 import i18n from "@/i18n";
-interface EditEventProps {
-  event: EventProps;
-}
+import { useEvents } from "@/hooks/useEvents";
 
-const EditEvent = ({ event }: EditEventProps) => {
+const EditEvent = ({ eventId }: { eventId: string }) => {
   const { t } = useTranslation();
-  const { getAllEvents } = useEvents();
   const [name, setName] = useState<{ en: string; ar: string }>({ en: "", ar: "" });
   const [description, setDescription] = useState<{ en: string; ar: string }>({ en: "", ar: "" });
   const [eventDate, setEventDate] = useState("");
@@ -29,7 +25,25 @@ const EditEvent = ({ event }: EditEventProps) => {
   const token = Cookie.get("token");
   const [isLoading, setIsLoading] = useState(false);
   const [open, setOpen] = useState(false);
-
+  const { getAllEvents } = useEvents();
+  const [event, setEvent] = useState<EventProps>({} as EventProps);
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        const response = await axios.get(`${eventURL}/getEventById/${eventId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            getAllEvent: "true",
+          },
+        });
+        setEvent(response.data.data.event);
+        console.log("event is the ", response.data.data.event);
+      } catch (error) {
+        console.error("Error fetching event:", error);
+      }
+    };
+    fetchEvent();
+  }, [eventId, token]);
   useEffect(() => {
     setName(typeof event.name === "object" ? event.name : { en: String(event.name), ar: "" });
     setDescription(typeof event.description === "object" ? event.description : { en: String(event.description), ar: "" });

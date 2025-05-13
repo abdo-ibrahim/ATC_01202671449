@@ -107,6 +107,15 @@ exports.getEventById = asyncHandler(async (req, res, next) => {
   if (!event) {
     return next(new AppError("No event found with that ID", 404));
   }
+  const all = req.headers["getallevent"];
+  if (all && all === "true") {
+    return res.status(200).json({
+      status: "success",
+      data: {
+        event,
+      },
+    });
+  }
   const translatedEvent = {
     _id: event._id,
     name: event.name[lang],
@@ -130,7 +139,6 @@ exports.getEventById = asyncHandler(async (req, res, next) => {
 // @method: PUT
 // @access: private
 exports.updateEvent = asyncHandler(async (req, res, next) => {
-  const lang = getLanguage(req);
   if (!req.params.id) {
     return next(new AppError("Please provide an event ID", 400));
   }
@@ -167,20 +175,10 @@ exports.updateEvent = asyncHandler(async (req, res, next) => {
   if (!updatedEvent) {
     return next(new AppError("No event found with that ID", 404));
   }
-  const translatedEvent = {
-    _id: updatedEvent._id,
-    name: updatedEvent.name[lang],
-    description: updatedEvent.description[lang],
-    category: updatedEvent.category[lang],
-    eventDate: updatedEvent.eventDate,
-    venue: updatedEvent.venue[lang],
-    price: updatedEvent.price,
-    imageUrl: updatedEvent.imageUrl,
-  };
   res.status(200).json({
     status: "success",
     data: {
-      event: translatedEvent,
+      event: updatedEvent,
     },
   });
 });
