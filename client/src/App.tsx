@@ -55,7 +55,6 @@ const AppContent = () => {
 
 function App() {
   const { i18n } = useTranslation();
-
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     const timer = setTimeout(() => {
