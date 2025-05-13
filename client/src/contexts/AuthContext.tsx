@@ -16,11 +16,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       setUser(JSON.parse(userData));
       setIsAuthenticated(true);
     } else {
-      if (userData && !token) {
-        localStorage.removeItem("userData");
-      } else if (!userData && token) {
-        Cookie.remove("token");
-      }
+      localStorage.removeItem("userData");
+      Cookie.remove("token");
       setUser(null);
       setIsAuthenticated(false);
     }
