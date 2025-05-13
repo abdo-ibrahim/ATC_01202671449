@@ -1,7 +1,7 @@
 import EventSection from "@/components/home/EventSection";
 import Hero from "@/components/home/Hero";
 import { useEvents } from "@/hooks/useEvents";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Home = () => {
   const [query, setQuery] = useState("");
