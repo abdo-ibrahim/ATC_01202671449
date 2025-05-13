@@ -4,6 +4,9 @@
 
 AreebEvent is a fullstack event booking platform built with the **MERN** stack and **TypeScript**. It enables users to discover and book events with ease, while providing administrators with tools to manage events effectively.
 
+## Video Demo
+[video_demo](https://drive.google.com/file/d/1Xbu-suwBAN4B81J0TmJGbBwBwgzc0m_6/view)
+
 ## Features
 
 ### User Authentication
