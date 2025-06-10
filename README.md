@@ -1,5 +1,3 @@
-# ATC_01202671449
-
 # AreebEvent - Event Booking Platform
 
 AreebEvent is a fullstack event booking platform built with the **MERN** stack and **TypeScript**. It enables users to discover and book events with ease, while providing administrators with tools to manage events effectively.
